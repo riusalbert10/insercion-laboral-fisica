@@ -1,0 +1,11 @@
+# Credenciales locales
+.mysql_grafana_pass
+.grafana_token
+
+# Datos descargados y SQL generados (se regeneran con los scripts)
+data/
+eilu.sql
+sepe_contratos.sql
+egresados_fisica.sql
+
+__pycache__/

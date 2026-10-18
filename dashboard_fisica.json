@@ -1,0 +1,2192 @@
+{
+  "uid": "eilu-fisica",
+  "title": "Inserción laboral de graduados en Física (INE EILU 2019)",
+  "tags": [
+    "INE",
+    "EILU",
+    "física",
+    "empleo"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "schemaVersion": 41,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "templating": {
+    "list": [
+      {
+        "type": "custom",
+        "name": "formacion",
+        "label": "Formación",
+        "query": "Solo grado/licenciatura,Máster,Doctorado",
+        "multi": true,
+        "includeAll": true,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "options": []
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "text",
+      "title": "",
+      "gridPos": {
+        "w": 24,
+        "h": 5,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "### Inserción laboral de los graduados en Física en España\nFuente: **INE, Encuesta de Inserción Laboral de Titulados Universitarios (EILU) 2019**. Los datos son microdatos de **186 físicos**\nque representan a **914 titulados** del curso 2013-14, entrevistados en 2019, unos 5 años después de terminar.\n**Cómo leer las barras:** el % es la estimación del INE para *todos* los físicos, no el recuento de encuestados. Cada encuestado\npesa según su factor de elevación (de media representa a ~5 titulados, pero algunos a 12 o más). Por eso 3 encuestados pueden\nsuponer un 22 %. El número entre paréntesis es cuántas personas respondieron: **con menos de 10 encuestados, la cifra es poco fiable**.\nEl filtro *Formación* de arriba se aplica a los paneles marcados con ▾."
+      },
+      "id": 1
+    },
+    {
+      "type": "stat",
+      "title": "Tasa de empleo",
+      "description": "% de físicos que trabajan en 2019, sobre el total de titulados",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 4,
+        "h": 4,
+        "x": 0,
+        "y": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT tasa_empleo AS v FROM v_fisica_kpi"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "id": 2
+    },
+    {
+      "type": "stat",
+      "title": "Tasa de paro",
+      "description": "Desempleados / población activa",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 4,
+        "h": 4,
+        "x": 4,
+        "y": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT tasa_paro AS v FROM v_fisica_kpi"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 1,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "id": 3
+    },
+    {
+      "type": "stat",
+      "title": "Empleo sin máster",
+      "description": "% que trabaja entre quienes no tienen ni máster ni doctorado (36 encuestados, orientativo)",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 4,
+        "h": 4,
+        "x": 8,
+        "y": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT tasa_empleo_solo_grado AS v FROM v_fisica_kpi"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "id": 4
+    },
+    {
+      "type": "stat",
+      "title": "Sin máster",
+      "description": "% de físicos sin máster ni doctorado 5 años después de titularse",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 4,
+        "h": 4,
+        "x": 12,
+        "y": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT pct_solo_grado AS v FROM v_fisica_kpi"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "id": 5
+    },
+    {
+      "type": "stat",
+      "title": "Con máster",
+      "description": "% con máster pero sin doctorado",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 4,
+        "h": 4,
+        "x": 16,
+        "y": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT pct_master AS v FROM v_fisica_kpi"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "id": 6
+    },
+    {
+      "type": "stat",
+      "title": "Doctores",
+      "description": "",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 4,
+        "h": 4,
+        "x": 20,
+        "y": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT pct_doctorado AS v FROM v_fisica_kpi"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "id": 7
+    },
+    {
+      "type": "barchart",
+      "title": "¿Encuentran trabajo sin máster? Situación laboral según formación",
+      "description": "Barras al 100 %. 'Inactivo' incluye a quienes estudian o preparan oposiciones.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 24,
+        "h": 7,
+        "x": 0,
+        "y": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', formacion, ' (', SUM(muestra), ' encuestados)') AS categoria,\n       SUM(titulados*(situacion='Trabajando'))/SUM(titulados)   AS Trabajando,\n       SUM(titulados*(situacion='En desempleo'))/SUM(titulados) AS `En desempleo`,\n       SUM(titulados*(situacion='Inactivo'))/SUM(titulados)     AS Inactivo\nFROM v_fisica_situacion_formacion GROUP BY formacion\nORDER BY FIELD(formacion,'Solo grado/licenciatura','Máster','Doctorado')"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "max": 1,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Trabajando"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "En desempleo"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Inactivo"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "never",
+        "stacking": "normal",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 8
+    },
+    {
+      "type": "barchart",
+      "title": "Rama del máster que cursan los físicos",
+      "description": "Rama del primer máster. Para un físico, un máster de Ciencias Sociales suele ser el Máster de Profesorado (MAES).",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 12,
+        "h": 8,
+        "x": 0,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', rama_master, ' (', COUNT(*), ' encuestados)') AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND tiene_master=1 AND rama_master IS NOT NULL AND rama_master NOT LIKE 'NS/NC%'\nGROUP BY rama_master ORDER BY pct DESC"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 9
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Tipo de contrato (actual)",
+      "description": "'Becario / predoctoral' recoge sobre todo a los doctorandos con contrato predoctoral.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 12,
+        "h": 8,
+        "x": 12,
+        "y": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', situacion_profesional, ' (', COUNT(*), ' encuestados)') AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND situacion='Trabajando' AND situacion_profesional IS NOT NULL AND situacion_profesional NOT LIKE 'NS/NC%'\nGROUP BY situacion_profesional ORDER BY pct DESC LIMIT 6"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 10
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Ocupación actual (2019)",
+      "description": "Ocupación CNO-11 a 2 dígitos de quienes trabajan. Top 10.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 24,
+        "h": 10,
+        "x": 0,
+        "y": 24
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', ocupacion, ' (', COUNT(*), ' encuestados)') AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND situacion='Trabajando' AND ocupacion IS NOT NULL AND ocupacion NOT LIKE 'NS/NC%'\nGROUP BY ocupacion ORDER BY pct DESC LIMIT 10"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 11
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Ocupación en el primer empleo tras la carrera",
+      "description": "Lo más parecido a 'qué encuentra un recién graduado'. Top 10.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 24,
+        "h": 10,
+        "x": 0,
+        "y": 34
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', primera_ocupacion, ' (', COUNT(*), ' encuestados)') AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND ha_trabajado=1 AND primera_ocupacion IS NOT NULL AND primera_ocupacion NOT LIKE 'NS/NC%'\nGROUP BY primera_ocupacion ORDER BY pct DESC LIMIT 10"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 12
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Sector de la empresa donde trabajan",
+      "description": "Actividad principal del establecimiento (CNAE). Top 10.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 24,
+        "h": 10,
+        "x": 0,
+        "y": 44
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', sector, ' (', COUNT(*), ' encuestados)') AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND situacion='Trabajando' AND sector IS NOT NULL AND sector NOT LIKE 'NS/NC%'\nGROUP BY sector ORDER BY pct DESC LIMIT 10"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 13
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Nivel de formación que requiere su puesto",
+      "description": "Según el propio graduado. Mide la sobrecualificación.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 10,
+        "h": 9,
+        "x": 0,
+        "y": 54
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', nivel_apropiado, ' (', COUNT(*), ' encuestados)') AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND situacion='Trabajando' AND nivel_apropiado IS NOT NULL AND nivel_apropiado NOT LIKE 'NS/NC%'\nGROUP BY nivel_apropiado ORDER BY FIELD(nivel_apropiado,'Doctorado','Máster','Grado/licenciatura','FP superior','FP medio / bachiller','FP básica','ESO, EGB o inferior') LIMIT 10"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 14
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Sueldo mensual neto actual",
+      "description": "",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 7,
+        "h": 9,
+        "x": 10,
+        "y": 54
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', sueldo) AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND situacion='Trabajando' AND sueldo_cod BETWEEN 1 AND 7\nGROUP BY sueldo, sueldo_cod ORDER BY sueldo_cod"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 15
+    },
+    {
+      "type": "barchart",
+      "title": "▾ Tiempo hasta el primer empleo",
+      "description": "Desde que terminaron la carrera.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 7,
+        "h": 9,
+        "x": 17,
+        "y": 54
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT('    ', tiempo_primer_empleo) AS categoria, SUM(factor)/SUM(SUM(factor)) OVER () AS pct\nFROM graduados WHERE titulacion_cod='053301' AND formacion IN (${formacion:sqlstring}) AND tiempo_primer_empleo_cod BETWEEN 0 AND 6\nGROUP BY tiempo_primer_empleo, tiempo_primer_empleo_cod ORDER BY tiempo_primer_empleo_cod"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": false,
+            "axisPlacement": "hidden"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "always",
+        "stacking": "none",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 16
+    },
+    {
+      "type": "table",
+      "title": "Física frente a otras titulaciones de ciencias",
+      "description": "Mismas definiciones para todas las titulaciones. 'Empleo sin máster' = tasa de empleo de quienes no tienen ni máster ni doctorado. 'Todos los graduados' = toda la EILU 2019.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 24,
+        "h": 7,
+        "x": 0,
+        "y": 63
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT grupo AS `Titulación`, muestra AS `Encuestados`, tasa_empleo AS `Tasa de empleo`,\n       pct_con_posgrado AS `Con máster o doctorado`, tasa_empleo_solo_grado AS `Empleo sin máster`,\n       pct_mas_2000_eur AS `Gana > 2.000 €/mes`\nFROM v_comparativa_titulaciones ORDER BY muestra"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tasa de empleo"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Con máster o doctorado"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Empleo sin máster"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Gana > 2.000 €/mes"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "id": 17
+    },
+    {
+      "type": "text",
+      "title": "",
+      "gridPos": {
+        "w": 24,
+        "h": 10,
+        "x": 0,
+        "y": 70
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "### Evolución de la contratación de físicos, 2015-2025\nFuente: **SEPE, Observatorio de las Ocupaciones**, *Información anual de mercado de trabajo de titulados universitarios*\n(Licenciatura + Grado en Física), y **Ministerio de Ciencia, Innovación y Universidades** para los graduados.\n\n**Cuidado al leer los contratos:** el SEPE solo registra los contratos de físicos **inscritos como demandantes de empleo** en los\nservicios públicos de empleo, no los de todos los físicos. Cuenta **contratos, no personas**, y cada ficha lista solo las 10 actividades que más\ncontratan (por eso la industria casi nunca aparece y no se muestra). No hay datos por sector antes de 2015.\n\n**¿Por qué bajan los contratos totales (1.489 en 2015 → 1.171 en 2025) si cada año se gradúan más físicos?** No es que haya menos físicos trabajando.\nLa caída se reparte en dos efectos:\n\n① **Menos físicos pasan por el SEPE (≈ 80 % de la caída).** Las personas contratadas a través del SEPE bajan de 1.059 a 876 y los inscritos de 2.011 a 1.432,\nmientras los graduados se duplican y el **paro registrado baja** de 1.325 a 903. La mayoría de los nuevos graduados encuentra trabajo sin inscribirse,\ny la Licenciatura se extingue: sus titulados ya tienen 35-45 años y empleo estable.\n\n② **La reforma laboral de 2022 redujo el número de contratos por persona (≈ 20 % de la caída).** El SEPE cuenta **contratos, no personas**:\nantes, un físico con un trabajo temporal que se renovaba varias veces sumaba varios contratos; desde la reforma predominan los indefinidos, y un indefinido es\nun solo contrato. Los indefinidos pasan del 22 % (2021) al 43 % (2022) de golpe, y los contratos por persona bajan de 1,39 a 1,33.\nEn **Grado en Física** se ve claramente: en 2016, 15 indefinidos (9 %) y 146 temporales; en 2025, **365 indefinidos (48 %)** y 393 temporales."
+      },
+      "id": 18
+    },
+    {
+      "type": "trend",
+      "title": "% de los contratos a físicos que van a cada sector",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "description": "Contratos del sector / total de contratos a físicos de ese año. Educación (gris, discontinua) como referencia.",
+      "gridPos": {
+        "w": 14,
+        "h": 11,
+        "x": 0,
+        "y": 80
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT anio,\n  SUM(contratos*(sector='I+D (investigación)'))/MAX(total)             AS `I+D (investigación)`,\n  SUM(contratos*(sector='Informática y datos'))/MAX(total)             AS `Informática y datos`,\n  SUM(contratos*(sector='Ingeniería y servicios técnicos'))/MAX(total) AS `Ingeniería y servicios técnicos`,\n  SUM(contratos*(sector='Educación'))/MAX(total)                       AS `Educación`\nFROM v_sepe_fisica_sector_anual GROUP BY anio ORDER BY anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 1,
+          "min": 0,
+          "max": 0.4,
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "pointSize": 8,
+            "showPoints": "always",
+            "fillOpacity": 0,
+            "axisGridShow": true,
+            "axisPlacement": "left"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "I+D (investigación)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Informática y datos"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ingeniería y servicios técnicos"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Educación"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8e8e8e"
+                }
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "fill": "dash",
+                  "dash": [
+                    10,
+                    10
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "anio"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "min",
+                "value": 2015
+              },
+              {
+                "id": "max",
+                "value": 2025.4
+              },
+              {
+                "id": "displayName",
+                "value": "Año"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "xField": "anio",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 19
+    },
+    {
+      "type": "barchart",
+      "title": "Contratos a físicos por año y sector",
+      "description": "Número de contratos (no de personas), sumando Licenciatura y Grado en Física. El total baja: ver la explicación de arriba y los tres gráficos de debajo.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 10,
+        "h": 11,
+        "x": 14,
+        "y": 80
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CAST(anio AS CHAR) AS categoria,\n  SUM(contratos*(sector='I+D (investigación)'))             AS `I+D (investigación)`,\n  SUM(contratos*(sector='Informática y datos'))             AS `Informática y datos`,\n  SUM(contratos*(sector='Ingeniería y servicios técnicos')) AS `Ingeniería y servicios técnicos`,\n  SUM(contratos*(sector='Educación'))                       AS `Educación`,\n  SUM(contratos*(sector IN ('Otras actividades','Industria y energía'))) AS `Otras actividades`\nFROM v_sepe_fisica_sector_anual GROUP BY anio ORDER BY anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": true,
+            "axisPlacement": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "I+D (investigación)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Informática y datos"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ingeniería y servicios técnicos"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Educación"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8e8e8e"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Otras actividades"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4a4a4a"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "categoria",
+        "showValue": "never",
+        "stacking": "normal",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 20
+    },
+    {
+      "type": "trend",
+      "title": "① Graduados vs. inscritos SEPE",
+      "description": "Inscritos y parados a 31 de diciembre. Los graduados se duplican mientras el paro registrado de físicos baja. El pico de 2020 es la COVID. Graduados: Ministerio de Universidades (desde 2016).",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 6,
+        "h": 10,
+        "x": 0,
+        "y": 91
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT t.anio, e.graduados AS `Graduados del año`, t.demandantes AS `Inscritos en el SEPE`,\n       t.parados AS `Parados registrados`\nFROM (SELECT anio, SUM(demandantes) AS demandantes, SUM(parados) AS parados\n      FROM sepe_contratos_total GROUP BY anio) t\nLEFT JOIN (SELECT anio, SUM(egresados) AS graduados FROM egresados_fisica GROUP BY anio) e USING (anio)\nORDER BY t.anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "showPoints": "always",
+            "fillOpacity": 0,
+            "axisGridShow": true,
+            "axisPlacement": "left",
+            "spanNulls": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Graduados del año"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Inscritos en el SEPE"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8e8e8e"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Parados registrados"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "anio"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "min",
+                "value": 2015
+              },
+              {
+                "id": "max",
+                "value": 2025.4
+              },
+              {
+                "id": "displayName",
+                "value": "Año"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "xField": "anio",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 21
+    },
+    {
+      "type": "trend",
+      "title": "② Indefinidos (% de contratos)",
+      "description": "La reforma laboral (RDL 32/2021, en vigor en 2022) limitó los temporales. Menos renovaciones = menos contratos registrados por la misma gente trabajando.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 6,
+        "h": 10,
+        "x": 12,
+        "y": 91
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT anio, SUM(indefinidos)/SUM(indefinidos + temporales) AS `Indefinidos`\nFROM sepe_contratos_total GROUP BY anio ORDER BY anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 1,
+          "min": 0,
+          "max": 0.6,
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "showPoints": "always",
+            "fillOpacity": 0,
+            "axisGridShow": true,
+            "axisPlacement": "left",
+            "spanNulls": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Indefinidos"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "anio"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "min",
+                "value": 2015
+              },
+              {
+                "id": "max",
+                "value": 2025.4
+              },
+              {
+                "id": "displayName",
+                "value": "Año"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "xField": "anio",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 22
+    },
+    {
+      "type": "trend",
+      "title": "② Contratos por persona",
+      "description": "Contratos registrados / personas distintas contratadas en el año. Baja de ~1,40 a ~1,33 con la reforma laboral de 2022: menos renovaciones de temporales. Explica ≈ 20 % de la caída de contratos.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 6,
+        "h": 10,
+        "x": 18,
+        "y": 91
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT anio, SUM(contratos)/SUM(personas) AS `Contratos por persona`\nFROM sepe_contratos_total GROUP BY anio ORDER BY anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "min": 0,
+          "max": 1.6,
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "showPoints": "always",
+            "fillOpacity": 0,
+            "axisGridShow": true,
+            "axisPlacement": "left",
+            "spanNulls": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Contratos por persona"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Contratos por persona"
+            },
+            "properties": [
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "min",
+                "value": 1.2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "anio"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "min",
+                "value": 2015
+              },
+              {
+                "id": "max",
+                "value": 2025.4
+              },
+              {
+                "id": "displayName",
+                "value": "Año"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "xField": "anio",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 23
+    },
+    {
+      "type": "trend",
+      "title": "① Contratos Licenciatura/Grado",
+      "description": "Los contratos de licenciados caen al estabilizarse (ya tienen 35-45 años). Los de graduados suben, pero no lo compensan porque la mayoría de graduados encuentra trabajo sin pasar por el SEPE.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 6,
+        "h": 10,
+        "x": 6,
+        "y": 91
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT anio,\n  SUM(contratos*(titulacion='LICENCIATURA EN FÍSICA'))          AS `Licenciatura`,\n  SUM(contratos*(titulacion IN ('GRADO EN FÍSICA','GRADO EN FÍSICA APLICADA'))) AS `Grado`\nFROM sepe_contratos_total GROUP BY anio ORDER BY anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "min": 0,
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "showPoints": "always",
+            "fillOpacity": 0,
+            "axisGridShow": true,
+            "axisPlacement": "left",
+            "spanNulls": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Licenciatura"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8e8e8e"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Grado"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "anio"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "min",
+                "value": 2015
+              },
+              {
+                "id": "max",
+                "value": 2025.4
+              },
+              {
+                "id": "displayName",
+                "value": "Año"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "xField": "anio",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 24
+    },
+    {
+      "type": "barchart",
+      "title": "Graduados en Física por año (todas las universidades españolas)",
+      "description": "Egresados por curso académico (2024-25 = 2025). Fuente: Ministerio de Ciencia, Innovación y Universidades, Estadística de Estudiantes Universitarios. Los dobles grados (p. ej. Física + Matemáticas) cuentan una vez.",
+      "datasource": {
+        "type": "mysql",
+        "uid": "eilu-mysql"
+      },
+      "gridPos": {
+        "w": 24,
+        "h": 10,
+        "x": 0,
+        "y": 101
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "mysql",
+            "uid": "eilu-mysql"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "editorMode": "code",
+          "rawSql": "SELECT CONCAT(anio, ': ', FORMAT(SUM(egresados), 0, 'de_DE')) AS categoria,\n  SUM(egresados*(tipo='Grado en Física'))        AS `Grado en Física`,\n  SUM(egresados*(tipo='Doble grado con Física')) AS `Doble grado con Física`,\n  SUM(egresados*(tipo='Ingeniería Física'))      AS `Ingeniería Física`,\n  SUM(egresados*(tipo='Licenciatura en Física')) AS `Licenciatura (a extinguir)`\nFROM egresados_fisica GROUP BY anio ORDER BY anio"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "min": 0,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "gradientMode": "none",
+            "axisGridShow": true,
+            "axisPlacement": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categoria"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "left"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Grado en Física"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Doble grado con Física"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ingeniería Física"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Licenciatura (a extinguir)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#8e8e8e"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "vertical",
+        "xField": "categoria",
+        "showValue": "never",
+        "stacking": "normal",
+        "groupWidth": 0.7,
+        "barWidth": 0.85,
+        "barRadius": 0.05,
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xTickLabelMaxLength": 100
+      },
+      "id": 25
+    }
+  ]
+}
